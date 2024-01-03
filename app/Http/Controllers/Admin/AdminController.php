@@ -65,4 +65,32 @@ class AdminController extends Controller
         $id->delete();
         return redirect()->route('admin.articles');
     }
+
+    public function article_text_update(Request $request, Article $id)
+    {
+        $id->text = $request->text;
+        $id->save();
+        return redirect()->route('admin.articles');
+    }
+    public function article_title_update(Request $request, Article $id)
+    {
+        $id->title = $request->title;
+        $id->save();
+        return redirect()->route('admin.articles');
+    }
+    public function delete_several_article(Request $request)
+    {
+        $article = [];
+        foreach ($request->all() as $article_id => $v){
+            if($article_id == '_token'){//because first on request array is _token
+                continue;
+            }
+            $article[] = $article_id;
+        }
+        foreach ($article as $article_id){
+            $article = Article::where('id', $article_id)->get()[0];
+            $this->article_delete($article);
+        }
+        return redirect()->route('admin.articles');
+    }
 }

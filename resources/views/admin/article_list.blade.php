@@ -6,7 +6,8 @@
         <h2>Статьи</h2>
         <hr>
 
-        <form action="/controllers/ArticleController.php?action=delete-several" method='POST'>
+        <form action="{{route('admin.delete_several_article')}}" method='POST'>
+            @csrf
             <table>
                 <thead>
                 <tr>
@@ -37,7 +38,9 @@
                         <button class='title-edit-button' value=<?= $article['id'] ?>>Редактировать заголовок</button>
                         <div style='display: none;' class='title-edit-<?= $article['id'] ?>'>
                             <form action=""></form>
-                            <form action="/controllers/ArticleController.php?action=title-edit&id=<?= $article['id'] ?>" method='post'>
+                            <form action="{{route('admin.article_title_update', ['id' => $article['id']])}}" method='post'>
+                                @csrf
+                                @method('PATCH')
                                 <div class='title-form'>
                                     <textarea name='title'><?= $article['title'] ?></textarea>
                                     <button type="submit">Изменить</button>
@@ -49,7 +52,9 @@
                         <button class='text-edit-button' value=<?= $article['id'] ?>>Редактировать текст</button>
                         <div style='display: none;' class='text-edit-<?= $article['id'] ?>'>
                             <form action=""></form>
-                            <form action="/controllers/ArticleController.php?action=text-edit&id=<?= $article['id'] ?>" method='post'>
+                            <form action="{{route('admin.article_text_update', ['id' => $article['id']])}}" method='post'>
+                                @csrf
+                                @method('PATCH')
                                 <div class='text-form'>
                                     <textarea name='text'><?= $article['text'] ?></textarea>
                                     <button type="submit">Изменить</button>
@@ -58,7 +63,6 @@
                         </div>
 
                         <!-- Кнопка удаления -->
-                        <button><a href="/controllers/ArticleController.php?action=delete&id=<?= $article['id'] ?>">Удалить</a></button>
                         <form action="{{route('admin.article_delete', ['id' => $article['id']])}}" method="post">
                             @csrf
                             @method('DELETE')

@@ -44,9 +44,11 @@ class ArticleController extends Controller
 
     public function update(Request $request, Article $id)
     {
+        $validated = $request->validate(self::ARTICLE_VALIDATOR, self::ARTICLE_ERROR_MESSAGE);
+
         $id->fill([
-           'title' => $request->title,
-           'text' => $request->text
+           'title' => $validated['title'],
+           'text' => $validated['text']
         ]);
         $id->save();
         return redirect()->route('home');

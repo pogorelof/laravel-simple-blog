@@ -29,3 +29,6 @@ Route::post('/admin/users/delete_several_users', [AdminController::class, 'delet
 //Article control
 Route::get('/admin/article', [AdminController::class, 'article_list'])->name('admin.articles');
 Route::delete('/admin/article/{id}/delete', [AdminController::class, 'article_delete'])->name('admin.article_delete');
+Route::patch('/admin/article/{id}/update_text', [AdminController::class, 'article_text_update'])->name('admin.article_text_update');
+Route::patch('/admin/article/{id}/update_title', [AdminController::class, 'article_title_update'])->name('admin.article_title_update');
+Route::post('/admin/article/delete_several_article', [AdminController::class, 'delete_several_article'])->name('admin.delete_several_article');
