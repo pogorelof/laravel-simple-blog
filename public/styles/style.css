@@ -1,0 +1,199 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgba(155, 155, 147, 0.247);
+    width: 99%;
+}
+
+header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* background-color: rgb(161, 162, 236); */
+    background-color: rgb(62, 91, 233);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+header h1 {
+    color: #fff;
+    /* Белый цвет текста */
+    margin: 0;
+}
+
+textarea{
+    resize: none;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    /* margin-right: 20px; */
+}
+
+.button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    background-color: #fff;
+    /* Белый цвет фона кнопок */
+    color: #000000;
+    /* Красный цвет текста кнопок */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-type-exit{
+    background-color: rgb(247, 62, 62);
+}
+.form-exit{
+    display: contents;
+}
+.button-type-admin{
+    background-color: rgb(112, 255, 112);
+}
+
+.button:hover {
+    background-color: #578ff8;
+    /* Цвет фона при наведении */
+    color: #fff;
+    /* Цвет текста при наведении */
+}
+.button-type-exit:hover{
+    background-color: red;
+}
+
+a{
+    text-decoration: none;
+}
+
+.auth-form{
+    background-color: rgba(128, 128, 128, 0.363);
+    width: 30%;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+.auth-form label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+
+    font-size: 18px;
+}
+.auth-form button {
+    font-size: 20px;
+}
+
+.blog{
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 90%;
+}
+.card{
+    /* background-color: rgba(161, 162, 236, 0.616); */
+    background-color: rgba(57, 9, 249, 0.048);
+
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    padding: 1px;
+}
+.profile-card{
+    padding: 15px;
+}
+.card-title{
+    font-size: 40px;
+}
+.card-text{
+    font-size: 20px;
+}
+.card-date{
+    font-size: 15px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.write-form{
+    display: none;
+
+    position: fixed;
+    width: 80vh;
+    min-height: 58vh;
+    max-height: 90vh;
+    background-color: rgba(78, 158, 232, 0.867);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    overflow: scroll;
+}
+.title-input, .text-input{
+    border: none;
+    border-radius: 8px;
+}
+.title-input{
+    margin-top: 5px;
+    width: 90%;
+    height: 5vh;
+    font-size: 3vh;
+}
+.text-input{
+    margin-top: 5px;
+    resize: none;
+    width: 90%;
+    height: 30vh;
+    font-size: 2vh;
+}
+.write-button{
+    font-size: 120%;
+}
+.write-button:hover{
+    background-color: green;
+}
+
+.write-open{
+    font-size: 100%;
+}
+
+.form-check{
+    display: flex;
+    align-items: start;
+}
+.form-check-label{
+    /*margin-right: 3vh;*/
+}
+.error{
+    background-color: rgba(160, 29, 29, 0.94);
+    /*display: block;*/
+    width: 40vh;
+    min-height: 20vh;
+    max-height: 30vh;
+    overflow: scroll;
+}
+.error-text{
+    /*background-color: red;*/
+    width: 100%;
+    padding-bottom: 5vh;
+    text-align: center;
+}
