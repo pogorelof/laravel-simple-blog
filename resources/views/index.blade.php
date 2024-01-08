@@ -7,6 +7,9 @@
             <h3 class='card-title'>
                     {{ $article['title'] }}
             </h3>
+
+            <img class="card-image" src="/storage/{{$article['photo_path']}}">
+
             <p class='card-text'>
                     {{ $article['text'] }}
             </p>

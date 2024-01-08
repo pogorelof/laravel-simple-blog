@@ -9,6 +9,9 @@
         <h3 class='card-title'>
                 <?= $article['title'] ?>
         </h3>
+
+        <img class="card-image" src="/storage/{{$article['photo_path']}}">
+
         <p class='card-text'>
                 <?= $article['text'] ?>
         </p>
@@ -27,7 +30,7 @@
 </div>
 @foreach($articles as $article)
     <div class='write-form edit-form-<?= $article['id'] ?>' style='display: none; padding:10px;'>
-    <form action="{{route('update', ['id' => $article['id']])}}" method="post">
+    <form action="{{route('update', ['id' => $article['id']])}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <p>
@@ -42,6 +45,12 @@
         <p>
             <textarea class='text-input' name="text"><?= $article['text'] ?></textarea>
         </p>
+
+        <p>
+            <label for="photo" style="font-size: 20px">Заменить фото</label>
+            <input type="file" name="photo">
+        </p>
+
         <p>
             <button type="submit" class="button write-button" name='id' value=<?= $article['id'] ?>>Редактировать</button>
         </p>

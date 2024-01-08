@@ -129,6 +129,18 @@ a{
     text-align: right;
     margin-right: 10px;
 }
+.card-image{
+    width: 70vh; /* Замените 100px на желаемую ширину */
+    height: 50vh; /* Замените 100px на желаемую высоту */
+    object-fit: cover; /* Поддерживает соотношение сторон и обрезает изображение, чтобы оно заполнило контейнер */
+    border-radius: 8px; /* Закругление углов (по желанию) */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень (по желанию) */
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+.card-image:hover{
+    width: 80vh; /* Замените 100px на желаемую ширину */
+    height: 60vh;
+}
 
 .write-form{
     display: none;

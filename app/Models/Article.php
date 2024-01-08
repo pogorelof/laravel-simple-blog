@@ -7,7 +7,7 @@ use App\Models\User;
 
 class Article extends Model
 {
-    protected $fillable = ['title', 'text'];
+    protected $fillable = ['title', 'text', 'photo_path'];
     public function user()
     {
         return $this->belongsTo(User::class);

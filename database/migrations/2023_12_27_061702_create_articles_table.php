@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title', 50);
             $table->text('text');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('photo_path', 255)->default('default.jpeg');
 
             $table->timestamps();
             //объявления сортируются по дате

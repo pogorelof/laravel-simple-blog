@@ -32,8 +32,9 @@
     </div>
 </header>
 
+{{--Форма написания статьи--}}
 <div class='write-form add-form'>
-    <form action="{{route('submit')}}" method="post">
+    <form action="{{route('submit')}}" method="post" enctype="multipart/form-data">
         @csrf
         <p>
             <label for="title" style='font-size: 23px;'>Заголовок</label>
@@ -41,11 +42,19 @@
         <p>
             <input class='title-input' type="text" name='title'>
         </p>
+
         <p>
             <label for="text" style='font-size: 21px;'>Текст</label>
         </p>
         <p>
             <textarea class='text-input' name="text"></textarea>
+        </p>
+
+        <p>
+            <label for="photo" style="font-size: 20px">Фото</label>
+        </p>
+        <p>
+            <input type="file" name="photo">
         </p>
         <p>
             <button type="submit" class="button write-button">Выложить</button>

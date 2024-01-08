@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class ArticleController extends Controller
 {
     private const ARTICLE_VALIDATOR = [
-        'title' => 'required|max:70',
+        'title' => 'required|max:150',
         'text' => 'required|min:10'
     ];
     private const ARTICLE_ERROR_MESSAGE = [
@@ -34,9 +34,16 @@ class ArticleController extends Controller
     {
         $validated = $request->validate(self::ARTICLE_VALIDATOR, self::ARTICLE_ERROR_MESSAGE);
 
+        if($path = $request->file('photo')){
+            $path = $path->store('uploads', 'public');
+        }else{
+            $path = 'default.jpeg';
+        }
+
         Auth::user()->articles()->create([
             'title' => $validated['title'],
-            'text' => $validated['text']
+            'text' => $validated['text'],
+            'photo_path' => $path
         ]);
 
         return redirect()->route('home');
@@ -46,9 +53,20 @@ class ArticleController extends Controller
     {
         $validated = $request->validate(self::ARTICLE_VALIDATOR, self::ARTICLE_ERROR_MESSAGE);
 
+        if($path = $request->file('photo')){
+            if($id->photo_path != 'default.jpeg'){
+                $full_path = public_path('storage/' . $id->photo_path);
+                unlink($full_path);
+            }
+            $path = $path->store('uploads', 'public');
+        }else{
+            $path = $id->photo_path;
+        }
+
         $id->fill([
-           'title' => $validated['title'],
-           'text' => $validated['text']
+            'title' => $validated['title'],
+            'text' => $validated['text'],
+            'photo_path' => $path,
         ]);
         $id->save();
         return redirect()->route('home');
@@ -56,6 +74,16 @@ class ArticleController extends Controller
 
     public function delete(Article $id)
     {
+        $photo_full_path = public_path('storage/' . $id->photo_path);
+        $photo = explode('/', $photo_full_path);
+        $photo = $photo[count($photo) - 1];
+
+        if(file_exists($photo_full_path)){
+            if($photo != 'default.jpeg'){
+                unlink($photo_full_path);
+            }
+        }
+
         $id->delete();
         return redirect()->route('home');
     }
