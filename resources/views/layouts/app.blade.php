@@ -6,7 +6,7 @@
 </head>
 <body>
 <header>
-    <h1>Блог</h1>
+    <h1>{{config('app.name')}}</h1>
     <div class="buttons">
         <a class="button" href="/">Главная</a>
 
