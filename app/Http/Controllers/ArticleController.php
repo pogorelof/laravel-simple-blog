@@ -21,13 +21,28 @@ class ArticleController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     public function index()
     {
-        $context = ['articles' =>  Article::latest()->get()];
+        $articles = [];
+
+        foreach (Article::latest()->get() as $article){
+            $text = $article['text'];
+            $text = explode('.', $text)[0];
+            $article['text'] = $text . '...';
+            $articles[] = $article;
+        }
+
+        $context = ['articles' =>  $articles];
         return view('index', $context);
+    }
+
+    public function detail(Article $id)
+    {
+        $context = ['article' => $id];
+        return view('detail', $context);
     }
 
     public function submit(Request $request)
