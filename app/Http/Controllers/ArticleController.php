@@ -41,7 +41,10 @@ class ArticleController extends Controller
 
     public function detail(Article $id)
     {
-        $context = ['article' => $id];
+        $context = [
+            'article' => $id,
+            'comments' => CommentController::getByArticle($id)
+            ];
         return view('detail', $context);
     }
 

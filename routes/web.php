@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
@@ -24,8 +25,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-
+/*
+    |--------------------------------------------------------------------------
+    | Comment Routes
+    |--------------------------------------------------------------------------
+*/
+Route::post('/comment/{article}/submit', [CommentController::class, 'submit'])->name('comment.submit');
+Route::get('/comment/{comment}/delete', [CommentController::class, 'delete'])
+    ->name('comment.delete')
+    ->middleware('can:destroy,comment');
 /*
     |--------------------------------------------------------------------------
     | Admin Routes

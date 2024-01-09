@@ -29,16 +29,28 @@
         {{--  Comments  --}}
         <div class="comments">
             <h2>Комментарии: </h2>
+            @foreach($comments as $comment)
             <div class="one-comment">
-                <p><b>User</b> - 2024-2-1</p>
+                <div class="one-comment-header">
+                    <p><b>{{$comment->user->name}}</b> - {{$comment->created_at}}</p>
+                    @if($comment->user_id == Auth::user()->id)
+                    <a class="button button-delete" href="{{route('comment.delete', ['comment' => $comment->id])}}">
+                        <p>
+                            Удалить
+                        </p>
+                    </a>
+                    @endif
+                </div>
                 <hr>
                 <p>
-                    qweqweeqw
+                    {{$comment->text}}
                 </p>
             </div>
-            <form>
+            @endforeach
+            <form action="{{route('comment.submit', ['article' => $article['id']])}}" method="post">
+                @csrf
                 <p>
-                    <input>
+                    <input name="text">
                 </p>
                 <p>
                     <button class="button">Написать!</button>

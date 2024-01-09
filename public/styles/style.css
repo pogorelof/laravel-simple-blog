@@ -247,3 +247,15 @@ a{
     margin: 5px auto;
     padding: 10px;
 }
+.one-comment-header{
+    display: flex;
+    justify-content: space-between;
+}
+.button-delete{
+    background-color: red;
+    text-align: center;
+    font-size: 15px;
+    padding: 0;
+    width: 70px;
+}
+
