@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
+{{--  Card of Article  --}}
     <div class='blog'>
             <div class='card'>
                 <h3 class='card-title'>
@@ -25,5 +26,24 @@
                     </div>
                 </div>
             </div>
+        {{--  Comments  --}}
+        <div class="comments">
+            <h2>Комментарии: </h2>
+            <div class="one-comment">
+                <p><b>User</b> - 2024-2-1</p>
+                <hr>
+                <p>
+                    qweqweeqw
+                </p>
+            </div>
+            <form>
+                <p>
+                    <input>
+                </p>
+                <p>
+                    <button class="button">Написать!</button>
+                </p>
+            </form>
+        </div>
     </div>
 @endsection
