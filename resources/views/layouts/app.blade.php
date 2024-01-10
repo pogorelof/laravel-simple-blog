@@ -6,13 +6,27 @@
 </head>
 <body>
 <header>
-    <h1>{{config('app.name')}}</h1>
+    @auth
+        <div class="account">
+            <img class="avatar" src="/storage/{{Auth::user()->photo_path}}">
+            <div class="avatar-selector">
+                <form action="{{route('logout')}}" method="POST" class="form-exit">
+                    @csrf
+                    <a class="button" href="{{route('home')}}">Аккаунт</a>
+                    <br> <br>
+                    <button class="button button-type-exit" type="submit">Выйти</button>
+                </form>
+            </div>
+        </div>
+    @endauth
+
+    @guest
+        <h3>Гость</h3>
+    @endguest
+
+    <a href="/"><h1>{{config('app.name')}}</h1></a>
     <div class="buttons">
         <a class="button" href="/">Главная</a>
-
-        @auth
-            <a class="button" href="{{route('home')}}">Аккаунт</a>
-        @endauth
 
         @can('isAdmin', auth()->user())
             <a class="button button-type-admin" href="/admin">Админ-панель</a>
@@ -20,10 +34,6 @@
 
         @auth
             <button class='button button-type-admin write-open'>Написать</button>
-            <form action="{{route('logout')}}" method="POST" class="form-exit">
-                @csrf
-                <button type="submit" class="button button-type-exit">Выйти</button>
-            </form>
         @endauth
         @guest
             <a class="button" href="{{route('login')}}">Логин</a>
@@ -80,15 +90,27 @@
 @endif
 
 <script>
+    //форма отправки статьи
     const button = document.querySelector('.write-open');
     const form = document.querySelector('.add-form');
-
-    const error_form = document.querySelector('.error');
-    const close_error_form = document.querySelector('.close-error-form');
 
     button.addEventListener('click', () => {
         form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
     });
+
+    //форма логики аватара
+    const avatar = document.querySelector('.account');
+    const avatar_selector = document.querySelector('.avatar-selector');
+    avatar.addEventListener('mouseover', () => {
+        avatar_selector.style.display = 'block';
+    })
+    avatar.addEventListener('mouseout', () => {
+        avatar_selector.style.display = 'none';
+    })
+
+    //форма ошибки
+    const error_form = document.querySelector('.error');
+    const close_error_form = document.querySelector('.close-error-form');
     error_form.addEventListener('click', () => {
         error_form.style.display = 'none';
     })

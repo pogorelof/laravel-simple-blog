@@ -19,12 +19,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.net',
             'password' => Hash::make('admin'),
-            'role' => 'ADMIN'
+            'role' => 'ADMIN',
+            'photo_path' => 'default.jpeg'
         ]);
         $user = User::create([
             'name' => 'user',
             'email' => 'user@user.com',
-            'password' => Hash::make('user')
+            'password' => Hash::make('user'),
+            'photo_path' => 'default.jpeg'
         ]);
 
         $admin->articles()->create([

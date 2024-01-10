@@ -33,7 +33,7 @@
             <div class="one-comment">
                 <div class="one-comment-header">
                     <p><b>{{$comment->user->name}}</b> - {{$comment->created_at}}</p>
-                    @if($comment->user_id == Auth::user()->id)
+                    @if(Auth::check() && $comment->user_id == Auth::user()->id)
                     <a class="button button-delete" href="{{route('comment.delete', ['comment' => $comment->id])}}">
                         <p>
                             Удалить

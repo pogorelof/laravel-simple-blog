@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use http\Env\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+//use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -64,10 +66,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+//        die(print_r($data));
+        if(request()->hasFile('photo')){
+            $path = request()->file('photo')->store('uploads', 'public');
+        }else{
+            $path = 'default.jpeg';
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'photo_path' => $path,
         ]);
     }
 }
