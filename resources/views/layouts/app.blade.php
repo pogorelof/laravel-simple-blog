@@ -12,32 +12,34 @@
             <div class="avatar-selector">
                 <form action="{{route('logout')}}" method="POST" class="form-exit">
                     @csrf
-                    <a class="button" href="{{route('home')}}">Аккаунт</a>
+                    <a class="button" href="{{route('home')}}">{{__('text.home')}}</a>
                     <br> <br>
-                    <button class="button button-type-exit" type="submit">Выйти</button>
+                    <button class="button button-type-exit" type="submit">{{__('text.exit')}}</button>
                 </form>
             </div>
         </div>
     @endauth
 
     @guest
-        <h3>Гость</h3>
+        <h3>{{__('text.guest')}}</h3>
     @endguest
         <a href="/"><h1>{{config('app.name')}}</h1></a>
     <div class="buttons">
-        <a class="button" href="/">Главная</a>
+        <a class="button" href="/">{{__('text.main')}}</a>
 
         @can('isAdmin', auth()->user())
-            <a class="button button-type-admin" href="/admin">Админ-панель</a>
+            <a class="button button-type-admin" href="/admin">{{__('text.admin')}}</a>
         @endcan
 
         @auth
-            <button class='button button-type-admin write-open'>Написать</button>
+            <button class='button button-type-admin write-open'>{{__('text.write')}}</button>
         @endauth
         @guest
-            <a class="button" href="{{route('login')}}">Логин</a>
-            <a class="button" href="{{route('register')}}">Регистрация</a>
+            <a class="button" href="{{route('login')}}">{{__('text.login')}}</a>
+            <a class="button" href="{{route('register')}}">{{__('text.register')}}</a>
         @endguest
+
+        <a class="button" href="{{route('change_language')}}">{{__('text.language')}}</a>
     </div>
 </header>
 
@@ -46,27 +48,27 @@
     <form action="{{route('submit')}}" method="post" enctype="multipart/form-data">
         @csrf
         <p>
-            <label for="title" style='font-size: 23px;'>Заголовок</label>
+            <label for="title" style='font-size: 23px;'>{{__('text.title')}}</label>
         </p>
         <p>
             <input class='title-input' type="text" name='title'>
         </p>
 
         <p>
-            <label for="text" style='font-size: 21px;'>Текст</label>
+            <label for="text" style='font-size: 21px;'>{{__('text.text')}}</label>
         </p>
         <p>
             <textarea class='text-input' name="text"></textarea>
         </p>
 
         <p>
-            <label for="photo" style="font-size: 20px">Фото</label>
+            <label for="photo" style="font-size: 20px">{{__('text.photo')}}</label>
         </p>
         <p>
             <input type="file" name="photo">
         </p>
         <p>
-            <button type="submit" class="button write-button">Выложить</button>
+            <button type="submit" class="button write-button">{{__('text.send')}}</button>
         </p>
     </form>
 </div>
@@ -99,7 +101,7 @@
             <p>{{$message}}</p>
             @enderror
         </div>
-        <button class="button button-type-exit close-error-form">Закрыть</button>
+        <button class="button button-type-exit close-error-form">{{__('text.close')}}</button>
     </div>
 @endif
 

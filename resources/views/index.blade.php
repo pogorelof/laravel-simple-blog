@@ -18,10 +18,10 @@
                     {{ $article['text'] }}
                 </p>
                 <p class='card-date'>
-                    Автор: {{$article->user->name}}
+                    {{__('text.author')}}: {{$article->user->name}}
                 </p>
                 <p class='card-date'>
-                    Опубликовано: {{ $article['created_at'] }}
+                    {{__('text.published')}}: {{ $article['created_at'] }}
                 </p>
             </div>
         @endforeach

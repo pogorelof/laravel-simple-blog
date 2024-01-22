@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
@@ -25,6 +26,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/change_language', [Controller::class, 'change_language'])->name('change_language');
+
+
 /*
     |--------------------------------------------------------------------------
     | Comment Routes
@@ -34,6 +38,9 @@ Route::post('/comment/{article}/submit', [CommentController::class, 'submit'])->
 Route::get('/comment/{comment}/delete', [CommentController::class, 'delete'])
     ->name('comment.delete')
     ->middleware('can:destroy,comment');
+
+
+
 /*
     |--------------------------------------------------------------------------
     | Admin Routes

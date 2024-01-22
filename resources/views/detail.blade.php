@@ -18,17 +18,17 @@
                             {{ $article['text'] }}
                         </p>
                         <p class='card-date'>
-                            Автор: {{$article->user->name}}
+                            {{__('text.author')}}: {{$article->user->name}}
                         </p>
                         <p class='card-date'>
-                            Опубликовано: {{ $article['created_at'] }}
+                            {{__('text.published')}}: {{ $article['created_at'] }}
                         </p>
                     </div>
                 </div>
             </div>
         {{--  Comments  --}}
         <div class="comments">
-            <h2>Комментарии: </h2>
+            <h2>{{__('text.comments')}}: </h2>
             @foreach($comments as $comment)
             <div class="one-comment">
                 <div class="one-comment-header">
@@ -36,7 +36,7 @@
                     @if(Auth::check() && $comment->user_id == Auth::user()->id)
                     <a class="button button-delete" href="{{route('comment.delete', ['comment' => $comment->id])}}">
                         <p>
-                            Удалить
+                            {{__('text.delete')}}
                         </p>
                     </a>
                     @endif
@@ -58,7 +58,7 @@
                     <input name="text">
                 </p>
                 <p>
-                    <button class="button">Написать!</button>
+                    <button class="button">{{__('text.send')}}!</button>
                 </p>
             </form>
         </div>
