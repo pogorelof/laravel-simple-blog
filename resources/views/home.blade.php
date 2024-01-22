@@ -3,7 +3,6 @@
 @section('main')
 <h1 style='padding-left: 15px;'>Ваши статьи</h1>
 <div class='blog'>
-
     @foreach($articles as $article)
     <div class="card profile-card">
         <h3 class='card-title'>
@@ -27,6 +26,9 @@
         </form>
         </div>
     @endforeach
+        <div class="pagination">
+            {{ $articles->links() }}
+        </div>
 </div>
 @foreach($articles as $article)
     <div class='write-form edit-form-<?= $article['id'] ?>' style='display: none; padding:10px;'>

@@ -9,21 +9,11 @@
             <label for="login">Логин:</label>
             <input type="text" name="name" required>
         </p>
-        @error('name')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
 
         <p>
             <label for="password">Пароль:</label>
             <input type="password" name="password" required>
         </p>
-        @error('password')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
 
         <button class='button' type='submit'>Войти</button>
 

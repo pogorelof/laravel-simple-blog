@@ -16,7 +16,7 @@ class CommentController extends Controller
 
     public static function getByArticle(Article $article)
     {
-        return Comment::latest()->where('article_id', $article->id)->get();
+        return Comment::latest()->where('article_id', $article->id)->paginate(4);
     }
 
     public function submit(Request $request, Article $article)

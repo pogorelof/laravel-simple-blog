@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $context = ['articles' => Article::where('user_id', Auth::user()->id)->latest()->get()];
+        $context = ['articles' => Article::where('user_id', Auth::user()->id)->latest()->paginate(3)];
         return view('home', $context);
     }
 }

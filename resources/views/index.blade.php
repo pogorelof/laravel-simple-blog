@@ -25,5 +25,8 @@
                 </p>
             </div>
         @endforeach
+            <div class="pagination">
+                {{ $articles->links() }}
+            </div>
     </div>
 @endsection

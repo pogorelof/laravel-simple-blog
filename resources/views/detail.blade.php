@@ -47,6 +47,11 @@
                 </p>
             </div>
             @endforeach
+
+            <div class="pagination">
+                {{ $comments->links() }}
+            </div>
+
             <form action="{{route('comment.submit', ['article' => $article['id']])}}" method="post">
                 @csrf
                 <p>

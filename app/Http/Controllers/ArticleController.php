@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class ArticleController extends Controller
 {
     private const ARTICLE_VALIDATOR = [
-        'title' => 'required|max:150',
+        'title' => 'required|max:150|min:3',
         'text' => 'required|min:10'
     ];
     private const ARTICLE_ERROR_MESSAGE = [
@@ -26,13 +26,12 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $articles = [];
+        $articles = Article::latest()->paginate(3)->onEachSide(1);
 
-        foreach (Article::latest()->get() as $article){
+        foreach ($articles as $article){
             $text = $article['text'];
             $text = explode('.', $text)[0];
             $article['text'] = $text . '...';
-            $articles[] = $article;
         }
 
         $context = ['articles' =>  $articles];

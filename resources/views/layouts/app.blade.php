@@ -23,8 +23,7 @@
     @guest
         <h3>Гость</h3>
     @endguest
-
-    <a href="/"><h1>{{config('app.name')}}</h1></a>
+        <a href="/"><h1>{{config('app.name')}}</h1></a>
     <div class="buttons">
         <a class="button" href="/">Главная</a>
 
@@ -72,6 +71,7 @@
     </form>
 </div>
 
+
 {{--Форма ошибки--}}
 @if($errors->any())
     <div class="write-form error" @if($errors->any()) style="display: block" @endif>
@@ -84,6 +84,20 @@
             @error('text')
             <p>{{$message}}</p>
             @enderror
+
+            @error('name')
+            <p>{{$message}}</p>
+            @enderror
+
+            @error('password')
+            <p>{{$message}}</p>
+            @enderror
+            @error('password_confirmation')
+            <p>{{$message}}</p>
+            @enderror
+            @error('email')
+            <p>{{$message}}</p>
+            @enderror
         </div>
         <button class="button button-type-exit close-error-form">Закрыть</button>
     </div>
@@ -94,19 +108,23 @@
     const button = document.querySelector('.write-open');
     const form = document.querySelector('.add-form');
 
-    button.addEventListener('click', () => {
-        form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
-    });
+    if(button && form){
+        button.addEventListener('click', () => {
+            form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+        });
+    }
 
-    //форма логики аватара
+    //логика аватара
     const avatar = document.querySelector('.account');
     const avatar_selector = document.querySelector('.avatar-selector');
-    avatar.addEventListener('mouseover', () => {
-        avatar_selector.style.display = 'block';
-    })
-    avatar.addEventListener('mouseout', () => {
-        avatar_selector.style.display = 'none';
-    })
+    if(avatar && avatar_selector){
+        avatar.addEventListener('mouseover', () => {
+            avatar_selector.style.display = 'block';
+        })
+        avatar.addEventListener('mouseout', () => {
+            avatar_selector.style.display = 'none';
+        })
+    }
 
     //форма ошибки
     const error_form = document.querySelector('.error');
